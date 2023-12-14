@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import CartIcon from "./icons/cart.js";
 import Button from "./Button";
 import Link from "next/link";
-import { URLPattern } from "next/server.js";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 const WhiteBox = styled(Link)`
     background-color: #fff; 
@@ -49,6 +49,8 @@ const Price = styled.div`
 
 export default function ProducBox({_id, name, price, images, description}) {
     const url = `/products/${_id}`;
+    const {addProduct} = useContext(CartContext);
+
     return (
         <ProductWrapper>
             <WhiteBox href={url}>
@@ -60,7 +62,7 @@ export default function ProducBox({_id, name, price, images, description}) {
                 <Title href={url}>{name}</Title>
                 <PriceRow>
                     <Price>${price}</Price>
-                    <Button primary={1} outline={1}>
+                    <Button onClick={() => addProduct(_id)} primary={1} outline={1}>
                         Add to Cart
                     </Button>
                 </PriceRow>

@@ -7,7 +7,7 @@ export const ButtonStyle = css`
 border: 0;
 padding: 5px 15px;
 border-radius: 5px; 
-cursos: pointer;
+cursor: pointer;
 display: inline-flex; 
 align-items: center;
 text-decoration: none;
@@ -18,10 +18,16 @@ svg {
     margin-right: 5px;
 
 }
+${props => props.block && css`
+    display: block;
+    width: 100%; 
+`}
+
 ${props => props.white && !props.outline && css`
     background-color: white; 
     color: black;
 `}
+
 
 ${props => props.white && props.outline && css`
     background-color: transparent;; 
@@ -47,7 +53,11 @@ ${props => props.size === "l" && css`
     svg {
         height: 20px; 
     }
-`}`
+
+
+`}`;
+
+
 
 const StyledButton = styled.button`
    ${ButtonStyle}
