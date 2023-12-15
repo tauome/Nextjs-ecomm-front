@@ -14,7 +14,7 @@ export function CartContextProvider({children}){
         }
     }, [cartProducts])
 
-    //get cartProducts from local storage when component mounts
+    //get cartProducts from local storage when component mounts and store them in state
     useEffect(() => {
         const defaultProducts = localStorage ? JSON.parse(localStorage.getItem('cart')) : []; 
         setCartProducts(defaultProducts);

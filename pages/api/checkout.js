@@ -33,14 +33,13 @@ let line_items = [];
       });
     }
   }
-
-  console.log(line_items);
-  const orderDoc = await Order.create({
-    line_items,name,email,city,postalCode,
-    streetAddress,country,paid:false,
-  });
-
+  
   if (line_items.length > 0) {
+    const orderDoc = await Order.create({
+      line_items,name,email,city,postalCode,
+      streetAddress,country,paid:false,
+    });
+
     const session = await stripe.checkout.sessions.create({
         line_items,
         mode: 'payment',
@@ -49,7 +48,6 @@ let line_items = [];
         cancel_url: 'http://localhost:3000'+ '/cart?canceled=1',
         metadata: {orderId:orderDoc._id.toString(),test:'ok'},
       });
-      console.log(session)
       res.json({url:session.url});
   }
 

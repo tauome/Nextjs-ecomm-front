@@ -67,15 +67,18 @@ const CityHolder = styled.div`
 
 
 export default function CartPage() {
-    const {cartProducts, addProduct, removeProduct} = useContext(CartContext); 
+    const {cartProducts, setCartProducts, addProduct, removeProduct} = useContext(CartContext); 
     const [products, setProducts] = useState([]);
+    //fields for order info
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [city, setCity] = useState('');
     const [postalCode, setPostalCode] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
     const [country, setCountry] = useState('');
+    const [isSuccess, setIsSuccess] = useState(false);
 
+    //get product info using cartProducts
     useEffect(() => {
         if (cartProducts.length > 0){
             axios.post('/api/cart', {ids: cartProducts})
@@ -84,8 +87,17 @@ export default function CartPage() {
                 });
         } else {
             setProducts([]);
-        }
+        } 
     }, [cartProducts])
+
+    useEffect(() => {
+        if (typeof window !== 'undefined' && window.location.href.includes('success')) {
+            setIsSuccess(true);
+            localStorage.setItem('cart', JSON.stringify([]));
+            setProducts([]);
+            setCartProducts([]);
+        }
+    }, [])
 
     // go through productId in cartProducts and find the price in products
     let total = 0;
@@ -94,6 +106,7 @@ export default function CartPage() {
         total += parseInt(price);
     }
 
+    //create order and redirect to payment page
     async function goToPayment() {
         const response = await axios.post('/api/checkout', {
           name,email,city,postalCode,streetAddress,country,
@@ -104,8 +117,9 @@ export default function CartPage() {
         }
       }
 
-
-    if (typeof window !== 'undefined' && window.location.href.includes('success')) {
+    
+    //Order Success 
+    if (isSuccess) {
         return (
             <>
                 <Header/>
@@ -120,6 +134,7 @@ export default function CartPage() {
             </>
         )
     } else {
+        // display product info from products state
         return (
             <>
             <Header/>
