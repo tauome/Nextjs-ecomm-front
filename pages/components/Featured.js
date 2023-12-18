@@ -14,7 +14,10 @@ const Bg = styled.div`
 const Title = styled.h1`
     margin:0;
     font-weight: normal; 
-    font-size: 3rem;
+    font-size: 1.5rem;
+    @media screen and (min-width: 768px) {
+        font-size: 3rem;
+    }
 `; 
 
 const Desc = styled.p`
@@ -23,13 +26,19 @@ const Desc = styled.p`
 `;  
 
 const ColumnsWrapper = styled.div`
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
     gap: 40px; 
-    img {
+    width: 100%;
+    img { 
         max-width: 100%; 
         max-height: 80%;
+        display: block;
+        margin: 0 auto;
+
     };
+    div: nth-child(1){
+        order: 2;
+    }
+
 `;
 
 const ButtonsWrapper = styled.div`
@@ -40,6 +49,7 @@ const ButtonsWrapper = styled.div`
 
 
 const Column = styled.div`
+    margin-top: 30px;
     display: flex; 
     align-items: center; 
     flex-direction: column;
@@ -50,7 +60,6 @@ const Column = styled.div`
 
 
 export default function Featured({featuredProduct}){
-
     const {addProduct} = useContext(CartContext); 
 
     function addFeaturedToCart(ev){

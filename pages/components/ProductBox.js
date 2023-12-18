@@ -36,15 +36,22 @@ const ProductInfo = styled.div`
 `; 
 
 const PriceRow = styled.div`
-    display: flex; 
-    algign-items: center;
+    display: block; 
+    align-items: center;
     justify-content: space-between;
     margin-top: 2px; 
+    @media screen and (min-width: 768px) {
+        display: flex;  
+        gap: 10px;
+    }
 `; 
 
 const Price = styled.div`
-    font-size: 1.5rem; 
+    font-size: 1rem; 
     font-weight: bold; 
+    @media screen and (min-width: 768px) {
+        font-size: 1.5rem; 
+    }
 `;
 
 export default function ProducBox({_id, name, price, images, description}) {

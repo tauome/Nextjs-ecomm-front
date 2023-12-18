@@ -27,13 +27,16 @@ export function CartContextProvider({children}){
 
     function removeProduct(productId) {
         setCartProducts((prev) => {
-            const pos = prev.indexOf(productId);
-            if (pos !== -1) {
-                return prev.filter((val, idx) => idx !== pos);
-            }
-            return prev;
-        }); 
-    }
+          const updatedProducts = prev.slice();
+          const pos = updatedProducts.indexOf(productId);
+          if (pos !== -1) {
+            updatedProducts.splice(pos, 1);
+          }
+          return updatedProducts;
+        });
+      }
+      
+   
 
     return (
         <CartContext.Provider value={{cartProducts, setCartProducts, addProduct, removeProduct}}>{children}</CartContext.Provider>

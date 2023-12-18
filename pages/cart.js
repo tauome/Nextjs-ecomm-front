@@ -11,8 +11,11 @@ import Input from "./components/Input";
 
 const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
+    grid-template-columns: 1fr; 
     gap: 40px; 
+    @media screen and (min-width: 768px) {
+        grid-template-columns: 1.3fr 0.7fr;
+    }
 `;
 
 const Box = styled.div`
@@ -44,19 +47,29 @@ const ProductImageBox = styled.div`
     display: flex;
     aligh-items: center;
     justify-content: center;
-    width: 100px;
+    width: 70px;
     height: 100px; 
-    padding: 10px;
+    padding: 2px;
     border-radius: 10px;
     background-color: white; 
     img {
-        max-width: 80px;
-        max-height: 80px; 
+        max-width: 60px;
+        max-height: 60px; 
       }
+    @media screen and (min-width: 768px) {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+    }
 `; 
 
 const QuantityLabel = styled.span`
-      padding: 0 3px; 
+      padding: 0 10px; 
+      display: block;
+      @media screen and (min-width: 768px) {
+        display: inline-block; 
+        padding: 0 10px;
+      }
 `;
 
 const CityHolder = styled.div`
