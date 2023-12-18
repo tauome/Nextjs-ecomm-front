@@ -8,7 +8,6 @@ const StyledHeader = styled.header`
     padding: 0.5rem;
 `;
 
-
 const Logo = styled.a`
     color: #fff;
     text-decoration: none;
@@ -30,6 +29,10 @@ const StyledNav = styled.nav`
     gap: 15px;
 `; 
 
+const NavBUtton = styled.button` 
+ 
+`;
+
 export default function Header(){
     const {cartProducts} = useContext(CartContext);
 
@@ -47,6 +50,9 @@ export default function Header(){
                         <NavLink href={"/account"}>Account</NavLink>
                         <NavLink href={"/cart"}>Cart ({cartProducts?.length})</NavLink>
                     </StyledNav> 
+                    <NavButton>
+
+                    </NavButton>
                 </Wrapper>
             </Center>
         </StyledHeader>

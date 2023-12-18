@@ -47,7 +47,3 @@ export const config = {
     }
 }
 
-
-
-//acct_1OMynQElS5VGhUsw
-//whsec_a71b64eea8092c91b8b982e7fba7b294ae38a092e790785ea40443c0786c0ee

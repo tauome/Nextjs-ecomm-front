@@ -1,12 +1,7 @@
 import styled from "styled-components";
 import Center from "./Center.js";
-import ProductBox from "./ProductBox.js";
+import ProductsGrid from "./ProductsGrid.js";
 
-const ProductsGrid = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1r 1fr 1fr; 
-    gap: 30px; 
-`;
 
 const Title = styled.h2`
     font-size: 2rem; 
@@ -19,11 +14,7 @@ export default function NewProducts({newProducts}){
     return (
         <Center>
             <Title>New Arrivals</Title>
-            <ProductsGrid>
-                {newProducts?.length > 0 && newProducts.map((product) => (
-                    <ProductBox {...product} key={product._id}/>
-                ))}
-            </ProductsGrid>
+            <ProductsGrid products={newProducts}></ProductsGrid>
         </Center>
     );
 }
